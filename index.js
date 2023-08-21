@@ -1,8 +1,9 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv"); // Import dotenv package
+
 
 
 const port = 4000;
@@ -130,7 +131,7 @@ async function run() {
 
     app.put("/contactInfo/:id", async (req, res) => {
       const id = 1;
-      const filter = { _id: new ObjectID(id) };
+      const filter = { _id: new ObjectId(id) };
       const update = {
         $set: {
           facebook: req.body.facebook,
