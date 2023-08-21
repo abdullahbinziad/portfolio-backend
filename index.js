@@ -4,8 +4,6 @@ const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv"); // Import dotenv package
 
-
-
 const port = 4000;
 
 app.use(express.json());
@@ -84,13 +82,7 @@ async function run() {
         },
       };
 
-      const options = { upsert: true };
-
-      const result = await projectsCollection.updateOne(
-        filter,
-        update,
-        options
-      );
+      const result = await projectsCollection.updateOne(filter, update);
       res.send(result);
     });
 
@@ -105,8 +97,7 @@ async function run() {
     //update personal info
 
     app.put("/personalInfo/:id", async (req, res) => {
-      const id = 1;
-      const filter = { _id: new ObjectID(id) };
+      const filter = { _id: "1" };
       const update = {
         $set: {
           developerName: req.body.developerName,
@@ -117,21 +108,16 @@ async function run() {
       };
 
       // Add the 'upsert' option here
-      const options = { upsert: true };
 
-      const result = await personalInfoCollection.updateOne(
-        filter,
-        update,
-        options
-      );
+      const result = await personalInfoCollection.updateOne(filter, update);
       res.send(result);
     });
 
     //update social links info
 
     app.put("/contactInfo/:id", async (req, res) => {
-      const id = 1;
-      const filter = { _id: new ObjectId(id) };
+      const filter = { _id: "1" };
+
       const update = {
         $set: {
           facebook: req.body.facebook,
@@ -145,14 +131,7 @@ async function run() {
         },
       };
 
-      // Add the 'upsert' option here
-      const options = { upsert: true };
-
-      const result = await personalInfoCollection.updateOne(
-        filter,
-        update,
-        options
-      );
+      const result = await personalInfoCollection.updateOne(filter, update);
       res.send(result);
     });
 
