@@ -49,7 +49,7 @@ async function run() {
 
     app.get("/projects/:id", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: new Object(id) };
+      const query = { _id: new ObjectId(id) };
 
       const result = await projectsCollection.find(query).toArray();
       res.send(result);
