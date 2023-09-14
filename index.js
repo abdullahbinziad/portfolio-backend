@@ -59,7 +59,8 @@ async function run() {
 
     app.delete("/projects/:id", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: new Object(id) };
+      const query = { _id: new ObjectId(id) };
+      console.log(query);
       const result = await projectsCollection.deleteOne(query);
       res.send(result);
     });
@@ -68,7 +69,7 @@ async function run() {
 
     app.put("/projects/:id", async (req, res) => {
       const id = req.params.id;
-      const filter = { _id: new ObjectID(id) };
+      const filter = { _id: new ObjectId(id) };
       const update = {
         $set: {
           projectName: req.body.projectName,
