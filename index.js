@@ -37,8 +37,8 @@ async function run() {
     });
 
     app.get("/personalInfo", async (req, res) => {
-      let query = {};
-      const result = await personalInfoCollection.find(query).toArray();
+      
+      const result = await personalInfoCollection.find().toArray();
       res.send(result);
     });
 
