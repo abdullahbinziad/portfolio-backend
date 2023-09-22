@@ -37,13 +37,15 @@ async function run() {
     });
 
     app.get("/personalInfo", async (req, res) => {
-      
       const result = await personalInfoCollection.find().toArray();
       res.send(result);
     });
 
     app.get("/projects", async (req, res) => {
-      const result = await projectsCollection.find({}).toArray();
+      const result = await projectsCollection
+        .find({})
+        .sort({ createdAt: -1 })
+        .toArray();
       res.send(result);
     });
 
@@ -91,6 +93,7 @@ async function run() {
 
     app.post("/addProjects", async (req, res) => {
       const data = req.body;
+      data.createdAt = new Date();
       const result = await projectsCollection.insertOne(data);
       res.send(result);
     });
